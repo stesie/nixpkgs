@@ -4225,9 +4225,7 @@ with pkgs;
 
   routino = callPackage ../tools/misc/routino { };
 
-  rq = callPackage ../development/tools/rq {
-    v8 = v8_static;
-  };
+  rq = callPackage ../development/tools/rq { };
 
   rsnapshot = callPackage ../tools/backup/rsnapshot {
     # For the `logger' command, we can use either `utillinux' or
@@ -10126,9 +10124,7 @@ with pkgs;
 
   pgroonga = callPackage ../servers/sql/postgresql/pgroonga {};
 
-  plv8 = callPackage ../servers/sql/postgresql/plv8 {
-    v8 = v8_6_x;
-  };
+  plv8 = callPackage ../servers/sql/postgresql/plv8 { };
 
   phonon = callPackage ../development/libraries/phonon {};
 
@@ -10847,17 +10843,9 @@ with pkgs;
     stdenv = overrideCC stdenv gcc5;
   };
 
-  v8_6_x = callPackage ../development/libraries/v8/6_x.nix {
+  v8 = callPackage ../development/libraries/v8/6_x.nix {
     inherit (python2Packages) python;
   };
-
-  v8 = callPackage ../development/libraries/v8 {
-    inherit (python2Packages) python gyp;
-    cctools = darwin.cctools;
-    icu = icu58; # v8-5.4.232 fails against icu4c-59.1
-  };
-
-  v8_static = lowPrio (self.v8.override { static = true; });
 
   vaapiIntel = callPackage ../development/libraries/vaapi-intel {
     libva = libva-full; # also wants libva-{x11,drm,wayland}
@@ -11466,7 +11454,6 @@ with pkgs;
 
   eventstore = callPackage ../servers/nosql/eventstore {
     mono = mono46;
-    v8 = v8_6_x;
   };
 
   etcdctl = etcd;

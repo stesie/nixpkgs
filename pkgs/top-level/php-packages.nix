@@ -272,8 +272,8 @@ let
 
     sha256 = "0bj77dfmld5wfwl4wgqnpa0i4f3mc1mpsp9dmrwqv050gs84m7h1";
 
-    buildInputs = [ pkgs.v8_6_x ];
-    configureFlags = [ "--with-v8=${pkgs.v8_6_x}" ];
+    buildInputs = [ pkgs.v8 ];
+    configureFlags = [ "--with-v8=${pkgs.v8}" ];
   };
 
   v8js = assert isPhp7; buildPecl rec {
@@ -282,8 +282,8 @@ let
 
     sha256 = "0k5dc395gzva4l6n9mzvkhkjq914460cwk1grfandcqy73j6m89q";
 
-    buildInputs = [ pkgs.v8_6_x ];
-    configureFlags = [ "--with-v8js=${pkgs.v8_6_x}" ];
+    buildInputs = [ pkgs.v8 ];
+    configureFlags = [ "--with-v8js=${pkgs.v8}" ];
   };
 
   composer = pkgs.stdenv.mkDerivation rec {
