@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, cmake, clang, python, v8_static, coreutils }:
+{ stdenv, fetchFromGitHub, cmake, clang, python, v8, coreutils }:
 
 let
   sexpr_wasm_prototype = stdenv.mkDerivation {
@@ -45,7 +45,7 @@ stdenv.mkDerivation {
   installPhase = ''
     export DESTDIR=$out
     export MKTEMPDIR=${coreutils}/bin
-    export D8DIR=${v8_static}/bin
+    export D8DIR=${v8}/bin
     export SWDIR=${sexpr_wasm_prototype}/bin
     make install
   '';
@@ -55,5 +55,10 @@ stdenv.mkDerivation {
     maintainers = with maintainers; [ proglodyte ];
     platforms = platforms.linux;
     license = licenses.asl20;
+
+    # wasm interpreter needs a V8 built with wasm support enabled,
+    # yet by default wasm support is turned off until 6.4.8
+    # see https://github.com/v8/v8/commit/0e8b7ec8b1161f2668328b31232321cb231555d0
+    broken = true;
   };
 }
