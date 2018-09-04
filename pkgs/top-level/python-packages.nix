@@ -6727,6 +6727,8 @@ in {
 
   klein = callPackage ../development/python-modules/klein { };
 
+  knack = callPackage ../development/python-modules/knack { };
+
   koji = callPackage ../development/python-modules/koji { };
 
   kombu = callPackage ../development/python-modules/kombu { };
