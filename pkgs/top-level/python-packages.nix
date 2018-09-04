@@ -754,25 +754,7 @@ in rec {
 
   azure-nspkg = callPackage ../development/python-modules/azure-nspkg { };
 
-  azure-common = buildPythonPackage rec {
-    version = "1.0.0";
-    name = "azure-common-${version}";
-    disabled = isPyPy;
-    src = pkgs.fetchurl {
-      url = mirror://pypi/a/azure-common/azure-common-1.0.0.zip;
-      sha256 = "074rwwy8zzs7zw3nww5q2wg5lxgdc4rmypp2gfc9mwsz0gb70491";
-    };
-    propagatedBuildInputs = with self; [ azure-nspkg ];
-    postInstall = ''
-      echo "__import__('pkg_resources').declare_namespace(__name__)" >> "$out/lib/${python.libPrefix}"/site-packages/azure/__init__.py
-    '';
-    meta = {
-      description = "Microsoft Azure SDK for Python";
-      homepage = "https://azure.microsoft.com/en-us/develop/python/";
-      license = licenses.asl20;
-      maintainers = with maintainers; [ olcai ];
-    };
-  };
+  azure-common = callPackage ../development/python-modules/azure-common { };
 
   azure-mgmt-common = buildPythonPackage rec {
     version = "0.20.0";
