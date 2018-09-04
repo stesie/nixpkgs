@@ -752,6 +752,8 @@ in rec {
 
   azure-cli-nspkg = callPackage ../development/python-modules/azure-cli-nspkg { };
 
+  azure-cli-telemetry = callPackage ../development/python-modules/azure-cli-telemetry { };
+
   azure-nspkg = callPackage ../development/python-modules/azure-nspkg { };
 
   azure-common = callPackage ../development/python-modules/azure-common { };
