@@ -128,7 +128,7 @@ let
   disabledIf = x: drv:
     if x then throw "${removePythonPrefix (drv.pname or drv.name)} not supported for interpreter ${python.executable}" else drv;
 
-in {
+in rec {
 
   inherit python bootstrapped-pip pythonAtLeast pythonOlder isPy27 isPy33 isPy34 isPy35 isPy36 isPy37 isPyPy isPy3k buildPythonPackage buildPythonApplication;
   inherit fetchPypi callPackage;
@@ -7732,6 +7732,8 @@ in {
   };
 
   msrest = callPackage ../development/python-modules/msrest { };
+
+  msrestazure = callPackage ../development/python-modules/msrestazure { };
 
   msrplib = buildPythonPackage rec {
     pname = "python-msrplib";
