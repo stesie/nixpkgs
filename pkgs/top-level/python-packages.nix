@@ -748,6 +748,8 @@ in {
     };
   };
 
+  azure-cli-nspkg = callPackage ../development/python-modules/azure-cli-nspkg { };
+
   azure-nspkg = callPackage ../development/python-modules/azure-nspkg { };
 
   azure-common = buildPythonPackage rec {
