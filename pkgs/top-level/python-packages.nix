@@ -728,6 +728,8 @@ in {
 
   noise = callPackage ../development/python-modules/noise {};
 
+  applicationinsights = callPackage ../development/python-modules/applicationinsights {};
+
   azure = buildPythonPackage rec {
     version = "0.11.0";
     name = "azure-${version}";
