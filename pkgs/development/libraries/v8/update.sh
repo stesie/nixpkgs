@@ -23,7 +23,7 @@ echo $deps
 sed -ne '/= fetchgit {/ { s/.*"\(.*\)".*/\1/; p }' < ${FILE_PATH} | while read dep; do
     echo "Processing dependency --> $dep"
     escaped_dep=$(echo "$dep" | sed -e 's#/#\\/#g')
-    dep_rev=$(sed -ne "/\"v8\/${escaped_dep}\":/ { n; s#.*+ \"##; s#\".*##;  p }" "$deps")
+    dep_rev=$(sed -ne "/'v8\/${escaped_dep}':/ { n; s#.*+ '##; s#'.*##;  p }" "$deps")
 
     if [ "$dep_rev" = "" ]; then
         echo "Failed to resolve dependency $dep, not listed in DEPS file"

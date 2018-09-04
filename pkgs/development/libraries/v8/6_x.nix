@@ -16,18 +16,38 @@ let
   deps = {
     "base/trace_event/common" = fetchgit {
       url = "${git_url}/chromium/src/base/trace_event/common.git";
-      rev = "65d1d42a5df6c0a563a6fdfa58a135679185e5d9";
-      sha256 = "0ikk0dj12adzr0138jrmwzhx8n9sl5qzs86a3mc3gva08a8wc84p";
+      rev = "211b3ed9d0481b4caddbee1322321b86a483ca1f";
+      sha256 = "080sya1dg32hi5gj7zr3r5l18r6w8g0imajyf3xfvnz67a2i8dd7";
     };
     "build" = fetchgit {
       url = "${git_url}/chromium/src/build.git";
-      rev = "48a2b7b39debc7c77c868c9ddb0a360af1ebc367";
-      sha256 = "0aj554dfdbwnikwaapznfq55wkwbvg4114h7qamixy8ryjkaiy0k";
+      rev = "7315579e388589b62236ad933f09afd1e838d234";
+      sha256 = "14gsigyjfm03kfzmz0v6429b6qnycvzx0yj3vwaks8may26aiv71";
     };
     "buildtools" = fetchgit {
       url = "${git_url}/chromium/buildtools.git";
-      rev = "5af0a3a8b89827a8634132080a39ab4b63dee489";
-      sha256 = "1841803m40w1hmnmm7qzdpk4b6q1m8cb7q4hsflqfpddpf4lp3v1";
+      rev = "0dd5c6f980d22be96b728155249df2da355989d9";
+      sha256 = "0m1fh0qjcx9c69khnqcsqvrnqs7ji6wfxns9vv9mknj20sph5ydr";
+    };
+    "buildtools/clang_format/script" = fetchgit {
+      url = "${git_url}/chromium/llvm-project/cfe/tools/clang-format.git";
+      rev = "0653eee0c81ea04715c635dd0885e8096ff6ba6d";
+      sha256 = "1m3h5kln4v2hcwc4ahzk356415iizcg8cmika8221qvqci4wj7bm";
+    };
+    "buildtools/third_party/libc++/trunk" = fetchgit {
+      url = "${git_url}/chromium/llvm-project/libcxx.git";
+      rev = "85a7702b4cc5d69402791fe685f151cf3076be71";
+      sha256 = "0jphn7iacdigk7y7fccgz7a9a27rpmwihgzyc0bwwf2izix9fbks";
+    };
+    "buildtools/third_party/libc++abi/trunk" = fetchgit {
+      url = "${git_url}/chromium/llvm-project/libcxxabi.git";
+      rev = "05a73941f3fb177c4a891d4ff2a4ed5785e3b80c";
+      sha256 = "1npzybqgcglz3hdfn12bqfr46kxcx9sz27xdvzqp10p11jpkzz5c";
+    };
+    "buildtools/third_party/libunwind/trunk" = fetchgit {
+      url = "${git_url}/external/llvm.org/libunwind.git";
+      rev = "1e1c6b739595098ba5c466bfe9d58b993e646b48";
+      sha256 = "12wpvxchi0nik2xh06j3ivkf9mzg5nmpn87w3cb6dm9lcfh8mv5i";
     };
     "test/benchmarks/data" = fetchgit {
       url = "${git_url}/v8/deps/third_party/benchmarks.git";
@@ -41,8 +61,8 @@ let
     };
     "test/test262/data" = fetchgit {
       url = "${git_url}/external/github.com/tc39/test262.git";
-      rev = "1b911a8f8abf4cb63882cfbe72dcd4c82bb8ad91";
-      sha256 = "1hbp7vv41k7jka8azc78hhw4qng7gckr6dz1van7cyd067znwvr4";
+      rev = "a6c1d05ac4fed084fa047e4c52ab2a8c9c2a8aef";
+      sha256 = "1cy3val2ih6r4sbaxd1v9fir87mrlw1kr54s64g68gnch53ck9s3";
     };
     "test/test262/harness" = fetchgit {
       url = "${git_url}/external/github.com/test262-utils/test262-harness-py.git";
@@ -51,34 +71,29 @@ let
     };
     "test/wasm-js" = fetchgit {
       url = "${git_url}/external/github.com/WebAssembly/spec.git";
-      rev = "17b4a4d98c80b1ec736649d5a73496a0e6d12d4c";
-      sha256 = "03nyrrqffzj6xrmqi1v7f9m9395bdk53x301fy5mcq4hhpq6rsjr";
+      rev = "2113ea7e106f8a964e0445ba38f289d2aa845edd";
+      sha256 = "1c32mqgbq8afwwaazjhzjd0dpwd4k0vsibvhijmph89yvaydd8bq";
     };
-    "testing/gmock" = fetchgit {
-      url = "${git_url}/external/googlemock.git";
-      rev = "0421b6f358139f02e102c9c332ce19a33faf75be";
-      sha256 = "1xiky4v98maxs8fg1avcd56y0alv3hw8qyrlpd899zgzbq2k10pp";
-    };
-    "testing/gtest" = fetchgit {
+    "third_party/googletest/src" = fetchgit {
       url = "${git_url}/external/github.com/google/googletest.git";
-      rev = "6f8a66431cb592dad629028a50b3dd418a408c87";
-      sha256 = "0bdba2lr6pg15bla9600zg0r0vm4lnrx0wqz84p376wfdxra24vw";
+      rev = "ce468a17c434e4e79724396ee1b51d86bfc8a88b";
+      sha256 = "0nik8wb1b0zk2sslawgp5h211r5bc4x7m962dgnmbk11ccvsmr23";
     };
     "third_party/icu" = fetchgit {
       url = "${git_url}/chromium/deps/icu.git";
-      rev = "08cb956852a5ccdba7f9c941728bb833529ba3c6";
-      sha256 = "0vn2iv068kmcjqqx5cgyha80x9iraz11hpx3q4n3rkvrlvbb3d7b";
+      rev = "a9a2bd3ee4f1d313651c5272252aaf2a3e7ed529";
+      sha256 = "1bfyxakgv9z0rxbqsy5csi85kg8dqy7i6zybmng5wyzag9cns4f9";
     };
     "third_party/instrumented_libraries" = fetchgit {
       url = "${git_url}/chromium/src/third_party/instrumented_libraries.git";
-      rev = "644afd349826cb68204226a16c38bde13abe9c3c";
-      sha256 = "0d1vkwilgv1a4ghazn623gwmm7h51padpfi94qrmig1y748xfwfa";
+      rev = "323cf32193caecbf074d1a0cb5b02b905f163e0f";
+      sha256 = "0q3n3ivqva28qpn67ds635521pwzpc9apcyagz65i9j17bb1k231";
     };
     # templates of code generator require jinja2 2.8 (while nixpkgs has 2.9.5, which breaks the template)
     "third_party/jinja2" = fetchgit {
       url = "${git_url}/chromium/src/third_party/jinja2.git";
-      rev = "d34383206fa42d52faa10bb9931d6d538f3a57e0";
-      sha256 = "0d9hyw0bvp3p0dbwy833cm9vdqxcam0qbm9jc561ynphddxlkmgd";
+      rev = "b41863e42637544c2941b574c7877d3e1f663e25";
+      sha256 = "1qgilclkav67m6cl2xq2kmzkswrkrb2axc2z8mw58fnch4j1jf1r";
     };
     "third_party/markupsafe" = fetchgit {
       url = "${git_url}/chromium/src/third_party/markupsafe.git";
@@ -87,8 +102,8 @@ let
     };
     "tools/clang" = fetchgit {
       url = "${git_url}/chromium/src/tools/clang.git";
-      rev = "40f69660bf3cd407e72b8ae240fdd6c513dddbfe";
-      sha256 = "1plkb9dcn34yd6lad7w59s9vqwmcc592dasgdk232spkafpg8qcf";
+      rev = "c0b1d892b2bc1291eb287d716ca239c1b03fb215";
+      sha256 = "1mz1pqzr2b37mymbkqkmpmj48j7a8ig0ibaw3dfilbx5nbl4wd2z";
     };
   };
 
@@ -96,7 +111,7 @@ in
 
 stdenv.mkDerivation rec {
   name = "v8-${version}";
-  version = "6.2.414.27";
+  version = "6.9.427.18";
 
   inherit doCheck;
 
@@ -104,14 +119,16 @@ stdenv.mkDerivation rec {
     owner = "v8";
     repo = "v8";
     rev = version;
-    sha256 = "15zrb9bcpnhljhrilqnjaak3a4xnhj8li6ra12g3gkrw3fzir9a2";
+    sha256 = "0qm4rd6ln9lp0bchrq95mlhxa2nshmc50znx2rlrcmcw9pjzjkws";
   };
 
   postUnpack = ''
     ${lib.concatStringsSep "\n" (
       lib.mapAttrsToList (n: v: ''
-        mkdir -p $sourceRoot/${n}
-        cp -r ${v}/* $sourceRoot/${n}
+        target="$sourceRoot/${n}"
+        test -x "''${target%/*}" && chmod +w "''${target%/*}"
+        mkdir -p "$target"
+        cp -r ${v}/* "$target"
       '') deps)}
   '';
 
@@ -153,7 +170,7 @@ stdenv.mkDerivation rec {
     install -vD out.gn/${arch}.release/d8 "$out/bin/d8"
     install -vD out.gn/${arch}.release/mksnapshot "$out/bin/mksnapshot"
     mkdir -p "$out/lib"
-    for f in libicui18n.so libicuuc.so libv8_libbase.so libv8_libplatform.so libv8.so; do
+    for f in libc++.so libicui18n.so libicuuc.so libv8_libbase.so libv8_libplatform.so libv8.so; do
         install -vD out.gn/${arch}.release/$f "$out/lib/$f"
     done
     install -vD out.gn/${arch}.release/icudtl.dat "$out/lib/icudtl.dat"
