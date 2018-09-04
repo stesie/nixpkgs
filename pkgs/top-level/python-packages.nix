@@ -7731,6 +7731,8 @@ in {
     '';
   };
 
+  msrest = callPackage ../development/python-modules/msrest { };
+
   msrplib = buildPythonPackage rec {
     pname = "python-msrplib";
     name = "${pname}-${version}";
