@@ -3737,6 +3737,8 @@ in {
     inherit (pkgs.libsForQt5) poppler;
   };
 
+  portalocker = callPackage ../development/python-modules/portalocker { };
+
   poyo = buildPythonPackage rec {
     version = "0.4.0";
     name = "poyo-${version}";
