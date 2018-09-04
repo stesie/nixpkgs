@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   name = "plv8-${version}";
-  version = "2.1.0";
+  version = "2.1.1";
 
   nativeBuildInputs = [ perl ];
   buildInputs = [ v8 postgresql ];
@@ -11,8 +11,12 @@ stdenv.mkDerivation rec {
     owner = "plv8";
     repo = "plv8";
     rev = "v${version}";
-    sha256 = "1sfpxz0zcbinn6822j12lkwgrw9kfacrs83ic968rm489rl9w241";
+    sha256 = "0rjfbhyl0x8li4xwrz2dyc6w2x90afn9l68a36dnpq3biwd43caa";
   };
+
+  patches = [
+    ./isolate-api.patch
+  ];
 
   preConfigure = ''
     substituteInPlace Makefile --replace '-lv8_libplatform' '-lv8_libplatform -lv8_libbase'

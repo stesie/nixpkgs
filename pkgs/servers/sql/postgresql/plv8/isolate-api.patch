@@ -1,0 +1,98 @@
+Index: source/plv8.cc
+===================================================================
+--- source.orig/plv8.cc
++++ source/plv8.cc
+@@ -429,7 +429,7 @@ static Local<v8::Value>
+ DoCall(Handle<Function> fn, Handle<Object> receiver,
+ 	int nargs, Handle<v8::Value> args[])
+ {
+-	TryCatch		try_catch;
++	TryCatch		try_catch(plv8_isolate);
+ 
+ 	if (SPI_connect() != SPI_OK_CONNECT)
+ 		throw js_error("could not connect to SPI manager");
+@@ -704,7 +704,7 @@ CallTrigger(PG_FUNCTION_ARGS, plv8_exec_
+ 		tgargs->Set(i, ToString(trig->tg_trigger->tgargs[i]));
+ 	args[9] = tgargs;
+ 
+-	TryCatch			try_catch;
++	TryCatch			try_catch(plv8_isolate);
+ 	Local<Object> recv = Local<Object>::New(plv8_isolate, xenv->recv);
+ 	Local<Function>		fn =
+ 		Local<Function>::Cast(recv->GetInternalField(0));
+@@ -1047,7 +1047,7 @@ CompileDialect(const char *src, Dialect
+ 	}
+ 	Local<Context> ctx = Local<Context>::New(plv8_isolate, context);
+ 	Context::Scope	context_scope(ctx);
+-	TryCatch		try_catch;
++	TryCatch		try_catch(plv8_isolate);
+ 	Local<String>	key;
+ 	char		   *cresult;
+ 	const char	   *dialect_binary_data;
+@@ -1221,7 +1221,7 @@ CompileFunction(
+ 
+ 	Local<Context> context = Local<Context>::New(plv8_isolate, global_context);
+ 	Context::Scope	context_scope(context);
+-	TryCatch		try_catch;
++	TryCatch		try_catch(plv8_isolate);
+ 	Local<Script>	script = Script::Compile(source, Handle<String>::Cast(name));
+ 
+ 	if (script.IsEmpty())
+@@ -1280,7 +1280,7 @@ find_js_function(Oid fn_oid)
+ 										   true, false,
+ 										   (Dialect) (PLV8_DIALECT_NONE + langno));
+ 
+-		TryCatch			try_catch;
++		TryCatch			try_catch(plv8_isolate);
+ 
+ 		func = Local<Function>::New(plv8_isolate, proc->cache->function);
+ 	}
+@@ -1409,7 +1409,7 @@ GetGlobalContext(Persistent<Context>& gl
+ 
+ 			HandleScope			handle_scope(plv8_isolate);
+ 			Context::Scope		context_scope(my_context->localContext());
+-			TryCatch			try_catch;
++			TryCatch			try_catch(plv8_isolate);;
+ 			MemoryContext		ctx = CurrentMemoryContext;
+ 			text *arg;
+ 			FunctionCallInfoData fake_fcinfo;
+@@ -1487,7 +1487,7 @@ GetGlobalObjectTemplate()
+ 	{
+ 		HandleScope				handle_scope(plv8_isolate);
+ 
+-		Local<ObjectTemplate> templ = ObjectTemplate::New();
++		Local<ObjectTemplate> templ = ObjectTemplate::New(plv8_isolate);
+ 		// ERROR levels for elog
+ 		templ->Set(String::NewFromUtf8(plv8_isolate, "DEBUG5", String::kInternalizedString), Int32::New(plv8_isolate, DEBUG5));
+ 		templ->Set(String::NewFromUtf8(plv8_isolate, "DEBUG4", String::kInternalizedString), Int32::New(plv8_isolate, DEBUG4));
+@@ -1502,7 +1502,7 @@ GetGlobalObjectTemplate()
+ 		templ->Set(String::NewFromUtf8(plv8_isolate, "ERROR", String::kInternalizedString), Int32::New(plv8_isolate, ERROR));
+ 		global.Reset(plv8_isolate, templ);
+ 
+-		Handle<ObjectTemplate>	plv8 = ObjectTemplate::New();
++		Handle<ObjectTemplate>	plv8 = ObjectTemplate::New(plv8_isolate);
+ 
+ 		SetupPlv8Functions(plv8);
+ 		plv8->Set(String::NewFromUtf8(plv8_isolate, "version", String::kInternalizedString), String::NewFromUtf8(plv8_isolate, PLV8_VERSION));
+@@ -1634,7 +1634,7 @@ Datum
+ Converter::ToDatum(Handle<v8::Value> value, Tuplestorestate *tupstore)
+ {
+ 	Datum			result;
+-	TryCatch		try_catch;
++	TryCatch		try_catch(plv8_isolate);
+ 	Handle<Object>	obj;
+ 
+ 	if (!m_is_scalar)
+Index: source/plv8_func.cc
+===================================================================
+--- source.orig/plv8_func.cc
++++ source/plv8_func.cc
+@@ -1022,7 +1022,7 @@ plv8_Subtransaction(const FunctionCallba
+ 	subtran.enter();
+ 
+ 	Handle<v8::Value> emptyargs[] = {};
+-	TryCatch try_catch;
++	TryCatch try_catch(plv8_isolate);
+ 	Handle<v8::Value> result = func->Call(func, 0, emptyargs);
+ 
+ 	subtran.exit(!result.IsEmpty());
