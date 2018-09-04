@@ -2850,6 +2850,8 @@ in rec {
 
   hglib = callPackage ../development/python-modules/hglib {};
 
+  humanfriendly = callPackage ../development/python-modules/humanfriendly {};
+
   humanize = buildPythonPackage rec {
     version = "0.5.1";
     name = "humanize-${version}";
