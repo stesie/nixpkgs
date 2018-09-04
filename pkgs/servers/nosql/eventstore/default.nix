@@ -6,12 +6,17 @@
 stdenv.mkDerivation rec {
   name = "EventStore-${version}";
   version = "4.1.1";
+
   src = fetchFromGitHub {
     owner  = "EventStore";
     repo   = "EventStore";
     rev    = "oss-v${version}";
     sha256 = "1069ncb9ps1wi71yw1fzkfd9rfsavccw8xj3a3miwd9x72w8636f";
   };
+
+  patches = [
+    ./isolate-api.patch
+  ];
 
   buildPhase = ''
     mkdir -p src/libs/x64/nixos
@@ -36,7 +41,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ git ];
   buildInputs = [ v8 mono ];
 
-  phases = [ "unpackPhase" "buildPhase" "installPhase" ];
+  phases = [ "unpackPhase" "patchPhase" "buildPhase" "installPhase" ];
   dontStrip = true;
 
   meta = {

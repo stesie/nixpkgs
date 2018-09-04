@@ -1,0 +1,99 @@
+Index: source/src/EventStore.Projections.v8Integration/CompiledScript.cpp
+===================================================================
+--- source.orig/src/EventStore.Projections.v8Integration/CompiledScript.cpp
++++ source/src/EventStore.Projections.v8Integration/CompiledScript.cpp
+@@ -20,13 +20,13 @@ namespace js1
+ 	void CompiledScript::isolate_terminate_execution() 
+ 	{
+ 		v8::Isolate* isolate = get_isolate();
+-		v8::V8::TerminateExecution(isolate);
++		isolate->TerminateExecution();
+ 	}
+ 
+ 	void CompiledScript::report_errors(v8::Isolate *isolate, v8::Handle<v8::Context> context, REPORT_ERROR_CALLBACK report_error_callback)
+ 	{
+ 		v8::Isolate::Scope isolate_scope(isolate);
+-		if (v8::V8::IsDead() || v8::V8::IsExecutionTerminating(isolate)) 
++		if (isolate->IsDead() || isolate->IsExecutionTerminating())
+ 		{
+ 			//TODO: define error codes
+ 			report_error_callback(2, NULL);
+@@ -55,7 +55,7 @@ namespace js1
+ 		if (status != S_OK)
+ 			return status;
+ 
+-		v8::TryCatch try_catch;
++		v8::TryCatch try_catch(get_isolate());
+ 		v8::Handle<v8::Script> result = v8::Script::Compile(
+ 			v8::String::NewFromTwoByte(get_isolate(), script_source), 
+ 			v8::String::NewFromTwoByte(get_isolate(), file_name));
+@@ -74,7 +74,7 @@ namespace js1
+ 
+ 	v8::Handle<v8::Value> CompiledScript::run_script(v8::Isolate *isolate, v8::Handle<v8::Context> context)
+ 	{
+-		v8::TryCatch try_catch;
++		v8::TryCatch try_catch(isolate);
+ 		v8::Handle<v8::Value> result = v8::Handle<v8::Script>::New(isolate, *script)->Run();
+ 		if (set_last_error(isolate, result.IsEmpty(), try_catch)){
+ 			result.Clear();
+Index: source/src/EventStore.Projections.v8Integration/ModuleScript.cpp
+===================================================================
+--- source.orig/src/EventStore.Projections.v8Integration/ModuleScript.cpp
++++ source/src/EventStore.Projections.v8Integration/ModuleScript.cpp
+@@ -58,7 +58,7 @@ namespace js1
+ 		if (prelude != NULL) 
+ 		{
+ 			// prelude can be NULL if $load_module invoked from the prelude defintion itself
+-			result = v8::ObjectTemplate::New();
++			result = v8::ObjectTemplate::New(get_isolate());
+ 			return S_OK;
+ 		}
+ 
+Index: source/src/EventStore.Projections.v8Integration/PreludeScript.cpp
+===================================================================
+--- source.orig/src/EventStore.Projections.v8Integration/PreludeScript.cpp
++++ source/src/EventStore.Projections.v8Integration/PreludeScript.cpp
+@@ -51,7 +51,7 @@ namespace js1
+ 		v8::Handle<v8::Object> global = get_context()->Global();
+ 		v8::Handle<v8::Value> prelude_result;
+ 		v8::Handle<v8::Object> prelude_result_object;
+-		v8::TryCatch try_catch;
++		v8::TryCatch try_catch(get_isolate());
+ 
+ 		if (!enter_cancellable_region()) 
+ 			return S_TERMINATED; // initialized with 0 by default
+@@ -91,7 +91,7 @@ namespace js1
+ 
+ 	bool PreludeScript::exit_cancellable_region() 
+ 	{ 
+-		if (v8::V8::IsExecutionTerminating()) 
++		if (get_isolate()->IsExecutionTerminating())
+ 		{
+ 			printf("Terminating!");
+ 		}
+Index: source/src/EventStore.Projections.v8Integration/QueryScript.cpp
+===================================================================
+--- source.orig/src/EventStore.Projections.v8Integration/QueryScript.cpp
++++ source/src/EventStore.Projections.v8Integration/QueryScript.cpp
+@@ -67,7 +67,7 @@ namespace js1
+ 
+ 		v8::Handle<v8::Object> global = prelude->get_context()->Global();
+ 
+-		v8::TryCatch try_catch;
++		v8::TryCatch try_catch(get_isolate());
+ 
+ 		if (!prelude->enter_cancellable_region())
+ 		{
+Index: source/src/EventStore.Projections.v8Integration/js1.cpp
+===================================================================
+--- source.orig/src/EventStore.Projections.v8Integration/js1.cpp
++++ source/src/EventStore.Projections.v8Integration/js1.cpp
+@@ -18,7 +18,7 @@ extern "C"
+ 			v8::Isolate::Scope isolate_scope(isolate);
+ 			v8::HandleScope scope(isolate);
+ 			v8::Handle<v8::Context> context = v8::Context::New(isolate);
+-			v8::TryCatch try_catch;
++			v8::TryCatch try_catch(isolate);
+ 		}
+ 		return 1;
+ 	}
