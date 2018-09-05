@@ -3732,6 +3732,8 @@ in rec {
     };
   };
 
+  prompt-toolkit = callPackage ../development/python-modules/prompt-toolkit { };
+
   prov = callPackage ../development/python-modules/prov { };
 
   pudb = buildPythonPackage rec {
