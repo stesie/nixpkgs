@@ -956,6 +956,8 @@ in rec {
 
   azure-common = callPackage ../development/python-modules/azure-common { };
 
+  azure-datalake-store = callPackage ../development/python-modules/azure-datalake-store { };
+
   azure-graphrbac = callPackage ../development/python-modules/azure-graphrbac {
     buildPythonPackage = buildPythonPackageOnWheel0_30_0;
   };
