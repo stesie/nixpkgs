@@ -10173,6 +10173,8 @@ in rec {
     };
    });
 
+  pydocumentdb = callPackage ../development/python-modules/pydocumentdb { };
+
   pydot = callPackage ../development/python-modules/pydot { };
 
   pydot_ng = buildPythonPackage rec {
