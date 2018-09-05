@@ -976,17 +976,143 @@ in rec {
     };
   };
 
+  azure-mgmt-advisor = callPackage ../development/python-modules/azure-mgmt-advisor {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
 
-  azure-mgmt-compute = callPackage ../development/python-modules/azure-mgmt-compute { };
+  azure-mgmt-authorization = callPackage ../development/python-modules/azure-mgmt-authorization {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-batch = callPackage ../development/python-modules/azure-mgmt-batch {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-batchai = callPackage ../development/python-modules/azure-mgmt-batchai { };
+
+  azure-mgmt-billing = callPackage ../development/python-modules/azure-mgmt-billing {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-cdn = callPackage ../development/python-modules/azure-mgmt-cdn { };
+
+  azure-mgmt-cognitiveservices = callPackage ../development/python-modules/azure-mgmt-cognitiveservices {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-compute = callPackage ../development/python-modules/azure-mgmt-compute {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-consumption = callPackage ../development/python-modules/azure-mgmt-consumption {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-containerinstance = callPackage ../development/python-modules/azure-mgmt-containerinstance { };
+
+  azure-mgmt-containerregistry = callPackage ../development/python-modules/azure-mgmt-containerregistry {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-containerservice = callPackage ../development/python-modules/azure-mgmt-containerservice {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-cosmosdb = callPackage ../development/python-modules/azure-mgmt-cosmosdb { };
+
+  azure-mgmt-datalake-analytics = callPackage ../development/python-modules/azure-mgmt-datalake-analytics {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-datalake-nspkg = callPackage ../development/python-modules/azure-mgmt-datalake-nspkg { };
+
+  azure-mgmt-datalake-store = callPackage ../development/python-modules/azure-mgmt-datalake-store {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-datamigration = callPackage ../development/python-modules/azure-mgmt-datamigration { };
+
+  azure-mgmt-devtestlabs = callPackage ../development/python-modules/azure-mgmt-devtestlabs {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-dns = callPackage ../development/python-modules/azure-mgmt-dns { };
+
+  azure-mgmt-eventgrid = callPackage ../development/python-modules/azure-mgmt-eventgrid {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-eventhub = callPackage ../development/python-modules/azure-mgmt-eventhub {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-iothub = callPackage ../development/python-modules/azure-mgmt-iothub { };
+
+  azure-mgmt-iothubprovisioningservices = callPackage ../development/python-modules/azure-mgmt-iothubprovisioningservices { };
+
+  azure-mgmt-keyvault = callPackage ../development/python-modules/azure-mgmt-keyvault {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-loganalytics = callPackage ../development/python-modules/azure-mgmt-loganalytics { };
+
+  azure-mgmt-managementgroups = callPackage ../development/python-modules/azure-mgmt-managementgroups { };
+
+  azure-mgmt-marketplaceordering = callPackage ../development/python-modules/azure-mgmt-marketplaceordering {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-media = callPackage ../development/python-modules/azure-mgmt-media { };
+
+  azure-mgmt-monitor = callPackage ../development/python-modules/azure-mgmt-monitor {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-msi = callPackage ../development/python-modules/azure-mgmt-msi {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
 
   azure-mgmt-network = callPackage ../development/python-modules/azure-mgmt-network { };
 
   azure-mgmt-nspkg = callPackage ../development/python-modules/azure-mgmt-nspkg { };
 
+  azure-mgmt-rdbms = callPackage ../development/python-modules/azure-mgmt-rdbms { };
+
+  azure-mgmt-recoveryservices = callPackage ../development/python-modules/azure-mgmt-recoveryservices {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-recoveryservicesbackup = callPackage ../development/python-modules/azure-mgmt-recoveryservicesbackup {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-redis = callPackage ../development/python-modules/azure-mgmt-redis {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-reservations = callPackage ../development/python-modules/azure-mgmt-reservations { };
+
   azure-mgmt-resource = callPackage ../development/python-modules/azure-mgmt-resource { };
 
+  azure-mgmt-search = callPackage ../development/python-modules/azure-mgmt-search { };
 
-  azure-mgmt-storage = callPackage ../development/python-modules/azure-mgmt-storage { };
+  azure-mgmt-servicebus = callPackage ../development/python-modules/azure-mgmt-servicebus { };
+
+  azure-mgmt-servicefabric = callPackage ../development/python-modules/azure-mgmt-servicefabric {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-sql = callPackage ../development/python-modules/azure-mgmt-sql { };
+
+  azure-mgmt-storage = callPackage ../development/python-modules/azure-mgmt-storage {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-mgmt-trafficmanager = callPackage ../development/python-modules/azure-mgmt-trafficmanager { };
+
+  azure-mgmt-web = callPackage ../development/python-modules/azure-mgmt-web {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
 
   azure-nspkg = callPackage ../development/python-modules/azure-nspkg { };
 

@@ -1,33 +1,31 @@
 { stdenv, buildPythonPackage, fetchPypi
 , azure-common
 , azure-mgmt-nspkg
-, msrest
 , msrestazure
 }:
 
 buildPythonPackage rec {
-  pname = "azure-mgmt-compute";
-  version = "4.0.0rc2";
+  pname = "azure-mgmt-iothubprovisioningservices";
+  version = "0.2.0";
 
   src = fetchPypi {
     inherit pname version;
     extension = "zip";
-    sha256 = "06sxs5x9606wqvdayd86j518x6m88chmni3ky3ks4c6zjmjm8pfi";
+    sha256 = "07drnyn5jik89059kk03lp5k3bbc4vvjwc70y92siark3kysqdwc";
   };
 
   propagatedBuildInputs = [
     azure-common
     azure-mgmt-nspkg
-    msrest
     msrestazure
   ];
 
   doCheck = false;
 
   meta = with stdenv.lib; {
-    description = "Microsoft Azure Compute Management Client Library for Python";
+    description = "Microsoft Azure IoTHub Provisioning Services Client Library for Python";
     homepage = https://github.com/Azure/azure-sdk-for-python;
     license = licenses.mit;
-    maintainers = with maintainers; [ olcai stesie ];
+    maintainers = with maintainers; [ stesie ];
   };
 }

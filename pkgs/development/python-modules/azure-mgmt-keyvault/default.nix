@@ -6,13 +6,13 @@
 }:
 
 buildPythonPackage rec {
-  pname = "azure-mgmt-compute";
-  version = "4.0.0rc2";
+  pname = "azure-mgmt-keyvault";
+  version = "0.40.0";
 
   src = fetchPypi {
     inherit pname version;
     extension = "zip";
-    sha256 = "06sxs5x9606wqvdayd86j518x6m88chmni3ky3ks4c6zjmjm8pfi";
+    sha256 = "0c7x4357jrxm4w1pqp9008x039jpy8r11d5bhgxzfmwivjyaqzzv";
   };
 
   propagatedBuildInputs = [
@@ -25,9 +25,9 @@ buildPythonPackage rec {
   doCheck = false;
 
   meta = with stdenv.lib; {
-    description = "Microsoft Azure Compute Management Client Library for Python";
+    description = "Microsoft Azure Key Vault Management Client Library for Python";
     homepage = https://github.com/Azure/azure-sdk-for-python;
     license = licenses.mit;
-    maintainers = with maintainers; [ olcai stesie ];
+    maintainers = with maintainers; [ stesie ];
   };
 }

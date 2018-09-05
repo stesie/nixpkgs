@@ -1,33 +1,31 @@
 { stdenv, buildPythonPackage, fetchPypi
 , azure-common
 , azure-mgmt-nspkg
-, msrest
 , msrestazure
 }:
 
 buildPythonPackage rec {
-  pname = "azure-mgmt-compute";
-  version = "4.0.0rc2";
+  pname = "azure-mgmt-containerinstance";
+  version = "1.0.0";
 
   src = fetchPypi {
     inherit pname version;
     extension = "zip";
-    sha256 = "06sxs5x9606wqvdayd86j518x6m88chmni3ky3ks4c6zjmjm8pfi";
+    sha256 = "0by9kdag6gdhk7zqg7ab65l30l3bhlanlflknj228x9iah5ibj38";
   };
 
   propagatedBuildInputs = [
     azure-common
     azure-mgmt-nspkg
-    msrest
     msrestazure
   ];
 
   doCheck = false;
 
   meta = with stdenv.lib; {
-    description = "Microsoft Azure Compute Management Client Library for Python";
+    description = "Microsoft Azure Container Instance Client Library for Python";
     homepage = https://github.com/Azure/azure-sdk-for-python;
     license = licenses.mit;
-    maintainers = with maintainers; [ olcai stesie ];
+    maintainers = with maintainers; [ stesie ];
   };
 }

@@ -5,13 +5,13 @@
 }:
 
 buildPythonPackage rec {
-  pname = "azure-mgmt-resource";
-  version = "2.0.0rc2";
+  pname = "azure-mgmt-recoveryservices";
+  version = "0.1.0";
 
   src = fetchPypi {
     inherit pname version;
     extension = "zip";
-    sha256 = "1anh3m73ppfs12x9cngzgpkp4xqsms52iy2vyaazag9jns9j8709";
+    sha256 = "1vssmv6hyzz2ih5csjz7gyyk738vfb33wdlwf969yig2py7mp1xz";
   };
 
   propagatedBuildInputs = [ azure-common azure-mgmt-nspkg msrestazure ];
@@ -19,9 +19,9 @@ buildPythonPackage rec {
   doCheck = false;
 
   meta = with stdenv.lib; {
-    description = "Microsoft Azure Resource Management Client Library for Python";
+    description = "Microsoft Azure Recovery Services Client Library for Python";
     homepage = https://github.com/Azure/azure-sdk-for-python;
     license = licenses.mit;
-    maintainers = with maintainers; [ olcai stesie ];
+    maintainers = with maintainers; [ stesie ];
   };
 }

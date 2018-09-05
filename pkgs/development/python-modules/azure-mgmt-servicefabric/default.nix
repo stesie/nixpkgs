@@ -6,13 +6,13 @@
 }:
 
 buildPythonPackage rec {
-  pname = "azure-mgmt-compute";
-  version = "4.0.0rc2";
+  pname = "azure-mgmt-servicefabric";
+  version = "0.1.0";
 
   src = fetchPypi {
     inherit pname version;
     extension = "zip";
-    sha256 = "06sxs5x9606wqvdayd86j518x6m88chmni3ky3ks4c6zjmjm8pfi";
+    sha256 = "0wv3rni1jyqrh75nf5gzag2437fmy5j3wnnc10bgiz11qayqjxwz";
   };
 
   propagatedBuildInputs = [
@@ -25,9 +25,9 @@ buildPythonPackage rec {
   doCheck = false;
 
   meta = with stdenv.lib; {
-    description = "Microsoft Azure Compute Management Client Library for Python";
+    description = "Microsoft Azure Service Fabric Management Client Library for Python";
     homepage = https://github.com/Azure/azure-sdk-for-python;
     license = licenses.mit;
-    maintainers = with maintainers; [ olcai stesie ];
+    maintainers = with maintainers; [ stesie ];
   };
 }

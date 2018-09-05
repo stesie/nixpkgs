@@ -1,33 +1,31 @@
 { stdenv, buildPythonPackage, fetchPypi
 , azure-common
 , azure-mgmt-nspkg
-, msrest
 , msrestazure
 }:
 
 buildPythonPackage rec {
-  pname = "azure-mgmt-compute";
-  version = "4.0.0rc2";
+  pname = "azure-mgmt-marketplaceordering";
+  version = "0.1.0";
 
   src = fetchPypi {
     inherit pname version;
     extension = "zip";
-    sha256 = "06sxs5x9606wqvdayd86j518x6m88chmni3ky3ks4c6zjmjm8pfi";
+    sha256 = "1m0a8jrg5hj2fl6fbjqy0gfnpzvssss6cwkf4hpwc35brcjj98bd";
   };
 
   propagatedBuildInputs = [
     azure-common
     azure-mgmt-nspkg
-    msrest
     msrestazure
   ];
 
   doCheck = false;
 
   meta = with stdenv.lib; {
-    description = "Microsoft Azure Compute Management Client Library for Python";
+    description = "Microsoft Azure Market Place Ordering Client Library for Python";
     homepage = https://github.com/Azure/azure-sdk-for-python;
     license = licenses.mit;
-    maintainers = with maintainers; [ olcai stesie ];
+    maintainers = with maintainers; [ stesie ];
   };
 }
