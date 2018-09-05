@@ -1139,6 +1139,16 @@ in rec {
     };
   };
 
+  azure-storage-blob = callPackage ../development/python-modules/azure-storage-blob {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-storage-common = callPackage ../development/python-modules/azure-storage-common {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
+  azure-storage-nspkg = callPackage ../development/python-modules/azure-storage-nspkg { };
+
   azure-servicemanagement-legacy = buildPythonPackage rec {
     version = "0.20.1";
     name = "azure-servicemanagement-legacy-${version}";
