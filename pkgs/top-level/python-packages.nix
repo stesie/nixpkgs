@@ -14215,6 +14215,8 @@ EOF
 
   };
 
+  vsts-cd-manager = callPackage ../development/python-modules/vsts-cd-manager { };
+
   vultr = buildPythonPackage rec {
     version = "0.1.2";
     name = "vultr-${version}";
