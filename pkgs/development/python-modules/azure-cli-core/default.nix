@@ -24,12 +24,12 @@
 
 buildPythonPackage rec {
   pname = "azure_cli_core";
-  version = "2.0.45";
+  version = "2.0.43";
   format = "wheel";
 
   src = fetchPypi {
     inherit pname version format;
-    sha256 = "0hkz831hivbiljxnjac47zxkp72091zdc2gn8nn93qvxyk1sq7l3";
+    sha256 = "1qa1nw75k5xi4ndl77rw17mfgnv7j88f03hq1x10z7jffbgkg05w";
   };
 
   propagatedBuildInputs = [ adal argcomplete azure-cli-telemetry colorama
