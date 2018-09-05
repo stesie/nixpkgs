@@ -1122,6 +1122,10 @@ in rec {
     buildPythonPackage = buildPythonPackageOnWheel0_30_0;
   };
 
+  azure-multiapi-storage = callPackage ../development/python-modules/azure-multiapi-storage {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
   azure-nspkg = callPackage ../development/python-modules/azure-nspkg { };
 
   azure-storage = buildPythonPackage rec {
