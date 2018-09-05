@@ -33,7 +33,14 @@ let
 
   namePrefix = python.libPrefix + "-";
 
-  bootstrapped-pip = callPackage ../development/python-modules/bootstrapped-pip { };
+  bootstrapped-pip = callPackage ../development/python-modules/bootstrapped-pip {
+    wheel_source = fetchPypi {
+      pname = "wheel";
+      version = "0.31.1";
+      format = "wheel";
+      sha256 = "80044e51ec5bbf6c894ba0bc48d26a8c20a9ba629f4ca19ea26ecfcf87685f5f";
+    };
+  };
 
   # Derivations built with `buildPythonPackage` can already be overriden with `override`, `overrideAttrs`, and `overrideDerivation`.
   # This function introduces `overridePythonAttrs` and it overrides the call to `buildPythonPackage`.
@@ -53,6 +60,21 @@ let
 
   buildPythonPackage = makeOverridablePythonPackage ( makeOverridable (callPackage ../development/interpreters/python/build-python-package.nix {
     inherit bootstrapped-pip;
+    flit = self.flit;
+    # We want Python libraries to be named like e.g. "python3.6-${name}"
+    inherit namePrefix;
+    inherit toPythonModule;
+  }));
+
+  buildPythonPackageOnWheel0_30_0 = makeOverridablePythonPackage ( makeOverridable (callPackage ../development/interpreters/python/build-python-package.nix {
+    bootstrapped-pip = callPackage ../development/python-modules/bootstrapped-pip {
+      wheel_source = fetchPypi {
+        pname = "wheel";
+        version = "0.30.0";
+        format = "wheel";
+        sha256 = "0r6zmyf5wawfkslipggv2fn321nsfi5155hgyibgk17hchwfa8g7";
+      };
+    };
     flit = self.flit;
     # We want Python libraries to be named like e.g. "python3.6-${name}"
     inherit namePrefix;
@@ -748,6 +770,10 @@ in rec {
       license = licenses.asl20;
       maintainers = with maintainers; [ olcai ];
     };
+  };
+
+  azure-cli-core = callPackage ../development/python-modules/azure-cli-core {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
   };
 
   azure-cli-nspkg = callPackage ../development/python-modules/azure-cli-nspkg { };
