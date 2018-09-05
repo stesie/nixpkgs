@@ -4232,6 +4232,8 @@ in rec {
 
   s2clientprotocol = callPackage ../development/python-modules/s2clientprotocol { };
 
+  sshtunnel = callPackage ../development/python-modules/sshtunnel { };
+
   statsd = buildPythonPackage rec {
     name = "statsd-${version}";
     version = "3.2.1";
