@@ -960,6 +960,10 @@ in rec {
     buildPythonPackage = buildPythonPackageOnWheel0_30_0;
   };
 
+  azure-keyvault = callPackage ../development/python-modules/azure-keyvault {
+    buildPythonPackage = buildPythonPackageOnWheel0_30_0;
+  };
+
   azure-mgmt-common = buildPythonPackage rec {
     version = "0.20.0";
     name = "azure-mgmt-common-${version}";
