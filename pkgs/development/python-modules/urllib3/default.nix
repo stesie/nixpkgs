@@ -5,10 +5,11 @@
 buildPythonPackage rec {
   pname = "urllib3";
   version = "1.23";
+  format = "wheel";
 
   src = fetchPypi {
-    inherit pname version;
-    sha256 = "a68ac5e15e76e7e5dd2b8f94007233e01effe3e50e8daddf69acfd81cb686baf";
+    inherit pname version format;
+    sha256 = "1d8ps62yc51c71a8bq1yx99nfmq6r0qf12bfwsq2lhmssh5mlwmm";
   };
 
   NOSE_EXCLUDE = stdenv.lib.concatStringsSep "," [
