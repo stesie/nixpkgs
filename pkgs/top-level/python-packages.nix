@@ -772,6 +772,8 @@ in rec {
     };
   };
 
+  azure-batch = callPackage ../development/python-modules/azure-batch { };
+
   azure-cli = callPackage ../development/python-modules/azure-cli {
     buildPythonPackage = buildPythonPackageOnWheel0_30_0;
   };
