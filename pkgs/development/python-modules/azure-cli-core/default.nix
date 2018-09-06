@@ -1,4 +1,4 @@
-{ stdenv, buildPythonPackage, fetchPypi
+{ stdenv, buildPythonPackage, fetchPypi, python
 , adal
 , argcomplete
 , azure-cli-telemetry
@@ -23,14 +23,24 @@
 }:
 
 buildPythonPackage rec {
-  pname = "azure_cli_core";
+  pname = "azure-cli-core";
   version = "2.0.43";
-  format = "wheel";
 
   src = fetchPypi {
-    inherit pname version format;
-    sha256 = "1qa1nw75k5xi4ndl77rw17mfgnv7j88f03hq1x10z7jffbgkg05w";
+    inherit pname version;
+    sha256 = "08q8gxpgs15rvwxf6dmryg9ax9ki7sy22jaqfi7g9y1rvfbnqmlq";
   };
+
+  # Hackily force build w/ wheel 0.31
+  postPatch = ''
+    sed -e '/azure-namespace-package/d' -i  setup.cfg
+    sed -e 's/wheel==0.30.0/wheel/' -i setup.py azure_cli_core.egg-info/requires.txt
+  '';
+
+  postFixup = ''
+    rm "$out/lib/${python.libPrefix}/site-packages/azure/__init__.py"
+    rm "$out/lib/${python.libPrefix}/site-packages/azure/cli/__init__.py"
+  '';
 
   propagatedBuildInputs = [ adal argcomplete azure-cli-telemetry colorama
                             humanfriendly jmespath knack msrest msrestazure

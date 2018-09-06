@@ -109,7 +109,7 @@ buildPythonPackage rec {
 
     for p in ''${path_array[@]}; do
       if [[ ! "$p" =~ "-nspkg-" ]]; then
-        filteredPythonPath="$p"''${filteredPythonPath:+':'}"$filteredPythonPath"
+        filteredPythonPath="$filteredPythonPath"''${filteredPythonPath:+':'}"$p"
       fi
     done
 

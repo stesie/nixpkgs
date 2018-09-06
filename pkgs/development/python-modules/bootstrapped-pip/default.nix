@@ -1,6 +1,12 @@
-{ stdenv, python, fetchPypi, makeWrapper, unzip, wheel_source }:
+{ stdenv, python, fetchPypi, makeWrapper, unzip }:
 
 let
+  wheel_source = fetchPypi {
+    pname = "wheel";
+    version = "0.31.1";
+    format = "wheel";
+    sha256 = "80044e51ec5bbf6c894ba0bc48d26a8c20a9ba629f4ca19ea26ecfcf87685f5f";
+  };
   setuptools_source = fetchPypi {
     pname = "setuptools";
     version = "40.2.0";
